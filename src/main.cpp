@@ -1,10 +1,17 @@
 #include "../libs/graviter.hpp"
 
 int main(int argc, char **argv) {
-    sf::RenderWindow window(sf::VideoMode(W, H), "Graviter Simulator");
+    if (argc != 3) {
+        std::cout << "Usage : " << argv[0] << " <nb> <mass>" << std::endl;
+        return EXIT_FAILURE;
+    }
 
-    Space space(10, 10);
-    // space.update();
+    int nb = atoi(argv[1]);
+    int mass = atoi(argv[2]);
+
+    sf::RenderWindow window(sf::VideoMode(W, H), "Graviter Simulator");
+    window.setFramerateLimit(60);
+    Space space(&window, nb, mass);
 
     while (window.isOpen()) {
         sf::Event event;
@@ -13,9 +20,11 @@ int main(int argc, char **argv) {
                 window.close();
         }
 
-        // space.update();
-        window.clear();
+        window.clear(sf::Color::White);
+        space.drawPlanets();
         window.display();
+
+        space.updatePlanets();
     }
 
     return EXIT_SUCCESS;

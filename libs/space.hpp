@@ -9,9 +9,9 @@ class Space {
         int nb;
 
     public:
-        Space(int nb, int masse);
-        void update();
-        void graviter();
+        Space(sf::RenderWindow *win, int nb, int masse);
+        void updatePlanets();
+        void drawPlanets();
 };
 
 #endif
