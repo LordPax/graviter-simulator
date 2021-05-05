@@ -12,6 +12,12 @@ Planets::Planets(sf::RenderWindow *win, int masse) {
     this->distCrit = this->r * sqrt(2);
     this->exist = true;
     this->win = win;
+
+    // sf::Font font;
+    // font.loadFromFile("font/source_sans_pro_400.ttf");
+
+    // this->info.setFont(font);
+    // this->info.setCharacterSize(20);
 }
 
 void Planets::graviter(Planets *p) {
@@ -72,6 +78,16 @@ void Planets::draw() {
     this->circle.setFillColor(sf::Color::Black);
     this->circle.setPosition(this->coord.x, this->coord.y);
     this->win->draw(circle);
+}
+
+void Planets::drawInfo() {
+    sf::Font font;
+    font.loadFromFile("font/source_sans_pro_400.ttf");
+
+    sf::Text info("test", font, 10);
+    info.setFillColor(sf::Color::Black);
+    info.setPosition(this->coord.x + this->r + 10, this->coord.y);
+    this->win->draw(info);
 }
 
 bool Planets::isExist() { return this->exist; }

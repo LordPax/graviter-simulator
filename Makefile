@@ -1,6 +1,6 @@
 CXX=g++
 LIBS=-lsfml-graphics -lsfml-window -lsfml-system
-FLAGS=-W -Wall -ansi -pedantic -std=c++11
+FLAGS=-W -Wall -ansi -pedantic -std=c++20
 SRC=$(wildcard src/*.cpp)
 OBJ=$(SRC:.cpp=.o)
 EXEC=graviter

@@ -11,11 +11,14 @@
 
 #define W 800
 #define H 600
+#define FPS_MS 50
 
 struct Point {
     float x;
     float y;
 };
+
+bool sleep_every(uint16_t milliseconds);
 
 #include "planets.hpp"
 #include "space.hpp"

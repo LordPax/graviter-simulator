@@ -22,6 +22,7 @@ class Planets {
         bool isExist();
         void setExist(bool exist);
         void graviter(Planets *p);
+        void drawInfo();
 
         // bool operator==(const Planets &p1, const Planets &p2);
         // bool operator!=(const Planets &p1, const Planets &p2);

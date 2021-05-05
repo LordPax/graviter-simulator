@@ -10,7 +10,6 @@ int main(int argc, char **argv) {
     int mass = atoi(argv[2]);
 
     sf::RenderWindow window(sf::VideoMode(W, H), "Graviter Simulator");
-    window.setFramerateLimit(60);
     Space space(&window, nb, mass);
 
     while (window.isOpen()) {
@@ -20,11 +19,13 @@ int main(int argc, char **argv) {
                 window.close();
         }
 
-        window.clear(sf::Color::White);
-        space.drawPlanets();
-        window.display();
+        if (sleep_every(FPS_MS)) {
+            window.clear(sf::Color::White);
+            space.drawPlanets();
+            window.display();
 
-        space.updatePlanets();
+            space.updatePlanets();
+        }
     }
 
     return EXIT_SUCCESS;
