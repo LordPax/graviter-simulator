@@ -10,8 +10,6 @@ class Planets {
         float r; // rayon de la planete
         float mass; // masse de la planete
         float distCrit; // distance critique de collision
-        Point dir; // direction en x, y
-        float angle;
         bool exist;
         sf::RenderWindow *win;
         sf::CircleShape circle;

@@ -5,8 +5,6 @@ Planets::Planets(sf::RenderWindow *win, int masse) {
     this->coord.y = rand() % H;
     this->velocity.x = 0;
     this->velocity.y = 0;
-    this->dir.x = 0;
-    this->dir.y = 0;
     this->mass = rand() % masse;
     this->r = sqrt(this->mass);
     this->distCrit = this->r * sqrt(2);
@@ -42,8 +40,8 @@ void Planets::graviter(Planets *p) {
                 this->mass += pMass;
                 this->coord.x = (coord.x * mass + pCoord.x * pMass) / (mass + pMass);
                 this->coord.y = (coord.y * mass + pCoord.y * pMass) / (mass + pMass);
-                this->velocity.x = (mass * velo.x + pMass + pVelo.x) / (mass + pMass) * dt;
-                this->velocity.y = (mass * velo.y + pMass + pVelo.y) / (mass + pMass) * dt;
+                this->velocity.x = (mass * velo.x + pMass * pVelo.x) / (mass + pMass) * dt;
+                this->velocity.y = (mass * velo.y + pMass * pVelo.y) / (mass + pMass) * dt;
 
                 p->setExist(false);
                 this->r = sqrt(mass);
@@ -55,12 +53,7 @@ void Planets::graviter(Planets *p) {
             float dirx = force * cos(angle);
             float diry = force * sin(angle);
 
-            this->dir.x = dirx;
-            this->dir.y = diry;
-            this->angle = angle;
-
-            this->velocity.x += dirx;
-            this->velocity.y += diry;
+            this->setVelocity(velo.x + dirx, velo.y + diry);
         }
     }
 }
@@ -86,7 +79,7 @@ void Planets::drawInfo() {
 
     sf::Text info("test", font, 10);
     info.setFillColor(sf::Color::Black);
-    info.setPosition(this->coord.x + this->r + 10, this->coord.y);
+    info.setPosition(this->coord.x + this->r + 50, this->coord.y);
     this->win->draw(info);
 }
 
